@@ -1,0 +1,19 @@
+[
+{
+  "modid": "ZeldaMobs",
+  "name": "ZeldaMobs",
+  "description": "Currently adds Gibdo mobs",
+  "version": "1.0",
+  "credits": "Created by mod maker MCreator and Ganondorf629",
+  "logoFile": "/logo.png",
+  "mcversion": "1.10.2",
+  "url": "https://mcreator.pylo.co/",
+  "updateUrl": "",
+  "authors": [ "Ganondorf629" , "MCreator" ],
+  "parent": "",
+  "screenshots": [],
+  "dependencies": [
+     "mod_MinecraftForge"
+  ]
+}
+]

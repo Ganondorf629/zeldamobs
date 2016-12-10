@@ -1,0 +1,5 @@
+{
+"entity.gibdo.death": {"category": "hostile","sounds": [{"name": "ZeldaMobs:gibdodeath","stream": false}]},
+"entity.gibdo.hurt": {"category": "hostile","sounds": [{"name": "ZeldaMobs:gibdohurt","stream": false}]},
+"entity.gibdo.idle": {"category": "hostile","sounds": [{"name": "ZeldaMobs:gibdoidle","stream": false}]}
+}

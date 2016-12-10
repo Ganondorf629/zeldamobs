@@ -84,13 +84,13 @@ public class TestEnvironmentMod implements IFuelHandler, IWorldGenerator {
 		mcreator_0.preInit(event);
 
 		ResourceLocation sound0 = new ResourceLocation("TestEnvironmentMod", "entity.gibdo.death");
-		GameRegistry.register(new net.minecraft.util.SoundEvent(sound52).setRegistryName(sound0));
+		GameRegistry.register(new net.minecraft.util.SoundEvent(sound0).setRegistryName(sound0));
 
 		ResourceLocation sound1 = new ResourceLocation("TestEnvironmentMod", "entity.gibdo.hurt");
-		GameRegistry.register(new net.minecraft.util.SoundEvent(sound53).setRegistryName(sound1));
+		GameRegistry.register(new net.minecraft.util.SoundEvent(sound1).setRegistryName(sound1));
 
 		ResourceLocation sound2 = new ResourceLocation("TestEnvironmentMod", "entity.gibdo.idle");
-		GameRegistry.register(new net.minecraft.util.SoundEvent(sound54).setRegistryName(sound2));
+		GameRegistry.register(new net.minecraft.util.SoundEvent(sound2).setRegistryName(sound2));
 
 	}
 

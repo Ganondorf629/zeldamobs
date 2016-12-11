@@ -1,6 +1,9 @@
 package mod.mcreator;
 
-public class CommonProxyTestEnvironmentMod {
-	public void registerRenderers(TestEnvironmentMod ins) {
-	}
+import mod.mcreator.ZeldaMobs;
+
+public class CommonProxyZeldaMobs {
+    public void registerRenderers(ZeldaMobs ins) {
+    }
 }
+

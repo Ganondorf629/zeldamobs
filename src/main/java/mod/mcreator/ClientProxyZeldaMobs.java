@@ -1,10 +1,14 @@
 package mod.mcreator;
 
-public class ClientProxyTestEnvironmentMod extends CommonProxyTestEnvironmentMod {
+import mod.mcreator.CommonProxyZeldaMobs;
+import mod.mcreator.ZeldaMobs;
+import mod.mcreator.mcreator_gibdo;
 
-	@Override
-	public void registerRenderers(TestEnvironmentMod ins) {
-		ins.mcreator_0.registerRenderers();
-
-	}
+public class ClientProxyZeldaMobs
+extends CommonProxyZeldaMobs {
+    @Override
+    public void registerRenderers(ZeldaMobs ins) {
+        ins.mcreator_0.registerRenderers();
+    }
 }
+

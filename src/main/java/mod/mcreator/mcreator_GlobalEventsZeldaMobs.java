@@ -1,5 +1,5 @@
 package mod.mcreator;
 
-public class mcreator_GlobalEventsTestEnvironmentMod {
-
+public class mcreator_GlobalEventsZeldaMobs {
 }
+

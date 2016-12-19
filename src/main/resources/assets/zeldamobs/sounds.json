@@ -1,5 +1,11 @@
 {
 "entity.gibdo.death": {"category": "hostile","sounds": [{"name": "ZeldaMobs:gibdodeath","stream": false}]},
 "entity.gibdo.hurt": {"category": "hostile","sounds": [{"name": "ZeldaMobs:gibdohurt","stream": false}]},
-"entity.gibdo.idle": {"category": "hostile","sounds": [{"name": "ZeldaMobs:gibdoidle","stream": false}]}
+"entity.gibdo.idle": {"category": "hostile","sounds": [{"name": "ZeldaMobs:gibdoidle","stream": false}]},
+"entity.darknut.death": {"category": "hostile","sounds": [{"name": "ZeldaMobs:darknutdeath","stream": false}]},
+"entity.darknut.hit": {"category": "hostile","sounds": [{"name": "ZeldaMobs:darknuthit","stream": false}]},
+"entity.darknut.idle": {"category": "hostile","sounds": [{"name": "ZeldaMobs:darknutwalk","stream": false}]},
+"entity.molgera.growl": {"category": "hostile","sounds": [{"name": "ZeldaMobs:molgeragrowl","stream": false}]},
+"entity.molgera.death": {"category": "hostile","sounds": [{"name": "ZeldaMobs:molgeradeath","stream": false}]},
+"entity.molgera.hurt": {"category": "hostile","sounds": [{"name": "ZeldaMobs:molgerahurt","stream": false}]}
 }

@@ -1,3 +1,9 @@
 #Lang file was made using MCreator
-#Sat Dec 10 11:45:42 CET 2016
+#Mon Dec 19 11:52:25 CET 2016
+tile.GossipStone.name=Gossip Stone
+entity.ZeldaMobs.darknut.name=Darknut
+itemGroup.tabzeldaMobsBlocks=Zelda Mobs Blocks
+tile.MolgeraStatue.name=Molgera Statue
 entity.ZeldaMobs.gibdo.name=Gibdo
+tile.OldMossyCobblestone.name=Old Mossy Cobblestone
+entity.ZeldaMobs.molgera.name=Molgera

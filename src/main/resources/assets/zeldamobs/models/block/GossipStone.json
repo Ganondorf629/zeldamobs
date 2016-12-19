@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube",
+    "textures": {
+        "up": "blocks/gossipstone_side","down": "blocks/gossipstone_side","north": "blocks/gossipstone_face","east": "blocks/gossipstone_side","south": "blocks/gossipstone_side","west": "blocks/gossipstone_side","particle": "blocks/gossipstone_side"
+    }
+}

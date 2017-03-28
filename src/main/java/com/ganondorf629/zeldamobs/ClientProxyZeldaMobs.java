@@ -1,6 +1,6 @@
-package ganondorf629.zeldamobs;
+package com.ganondorf629.zeldamobs;
 
-import ganondorf629.zeldamobs.ZeldaMobs;
+import com.ganondorf629.zeldamobs.ZeldaMobs;
 
 public class ClientProxyZeldaMobs extends CommonProxyZeldaMobs {
 

@@ -1,4 +1,4 @@
-package ganondorf629.zeldamobs;
+package com.ganondorf629.zeldamobs;
 
 public class VarListzeldamobs {
 	

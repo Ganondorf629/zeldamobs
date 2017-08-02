@@ -1,0 +1,6 @@
+{
+    "parent": "zeldamobs:block/stalchildstatue_custom",
+    "textures": {
+        "0": "blocks/texture_stachildjembe","1": "blocks/texture_stachildtest","2": "blocks/texture_stachild","3": "blocks/texture_stachildppagne","4": "blocks/texture_stachildscenture","-1": "blocks/texture_stachildjembe","5": "blocks/texture_stachildcolonne","6": "blocks/texture_stachildtete","7": "blocks/texture_stachildtaitt","8": "blocks/texture_stachildtai2tt","9": "blocks/texture_stachildbrasmain","particle": "blocks/Stalchild_statue","all": "blocks/Stalchild_statue"
+    }
+}

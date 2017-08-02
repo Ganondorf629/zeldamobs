@@ -16,7 +16,6 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.DamageSource;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Item;
-import net.minecraft.init.Items;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.monster.EntityMob;
@@ -24,8 +23,7 @@ import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.boss.EntityDragon;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.EntityAIWander;
-import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIOpenDoor;
+import net.minecraft.entity.ai.EntityAIRestrictSun;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -43,7 +41,7 @@ import java.util.Iterator;
 import java.util.ArrayList;
 
 @SuppressWarnings("unchecked")
-public class gibdo {
+public class stalchild {
 
 	public int mobid = 0;
 	public static Object instance;
@@ -63,12 +61,12 @@ public class gibdo {
 
 	@SideOnly(Side.CLIENT)
 	public void registerRenderers() {
-		RenderLiving customRender = new RenderLiving(Minecraft.getMinecraft().getRenderManager(), new gibdo.Modelgibdo(), 0) {
+		RenderLiving customRender = new RenderLiving(Minecraft.getMinecraft().getRenderManager(), new stalchild.ModelStalchildOoT(), 0) {
 			protected ResourceLocation getEntityTexture(Entity par1Entity) {
-				return new ResourceLocation("gibdo.png");
+				return new ResourceLocation("stalchildoot.png");
 			}
 		};
-		RenderingRegistry.registerEntityRenderingHandler(gibdo.Entitygibdo.class, customRender);
+		RenderingRegistry.registerEntityRenderingHandler(stalchild.Entitystalchild.class, customRender);
 
 	}
 
@@ -78,9 +76,10 @@ public class gibdo {
 	public void preInit(FMLPreInitializationEvent event) {
 		int entityID = MathHelper.getRandomUUID().hashCode();
 		mobid = entityID;
-		EntityRegistry.registerModEntity(new ResourceLocation("testzeldamobs:gibdo"), gibdo.Entitygibdo.class, "gibdo", entityID,
-				instance, 64, 1, true, (204 << 16) + (153 << 8) + 0, (51 << 16) + (102 << 8) + 0);
-		EntityRegistry.addSpawn(gibdo.Entitygibdo.class, 10, 1, 1, EnumCreatureType.MONSTER, clean(Biome.REGISTRY));
+		EntityRegistry.registerModEntity(new ResourceLocation("testzeldamobs:stalchild"), stalchild.Entitystalchild.class, "stalchild",
+				entityID, instance, 64, 1, true, (102 << 16) + (102 << 8) + 102, (102 << 16) + (102 << 8) + 102);
+		EntityRegistry.addSpawn(stalchild.Entitystalchild.class, 70, 1, 5, EnumCreatureType.MONSTER,
+				Biome.REGISTRY.getObject(new ResourceLocation("plains")));
 
 	}
 
@@ -93,10 +92,10 @@ public class gibdo {
 		return ls.toArray(new Biome[ls.size()]);
 	}
 
-	public static class Entitygibdo extends EntityMob {
+	public static class Entitystalchild extends EntityMob {
 		World world = null;
 
-		public Entitygibdo(World var1) {
+		public Entitystalchild(World var1) {
 			super(var1);
 			world = var1;
 			experienceValue = 5;
@@ -106,25 +105,22 @@ public class gibdo {
 
 			this.tasks.addTask(1, new EntityAIWander(this, 0.8D));
 			this.tasks.addTask(2, new EntityAILookIdle(this));
-			this.tasks.addTask(3, new EntityAIOpenDoor(this, true));
-			this.tasks.addTask(3, new EntityAIOpenDoor(this, false));
-
-			this.tasks.addTask(5, new EntityAISwimming(this));
-			this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityDragon.class, 6.0F));
+			this.tasks.addTask(3, new EntityAIWatchClosest(this, EntityDragon.class, 6.0F));
+			this.tasks.addTask(4, new EntityAIRestrictSun(this));
+			this.targetTasks.addTask(5, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
+			this.targetTasks.addTask(6, new EntityAIHurtByTarget(this, false));
+			this.targetTasks.addTask(6, new EntityAINearestAttackableTarget(this, EntityPlayerMP.class, true));
+			this.targetTasks.addTask(7, new EntityAIHurtByTarget(this, false));
 			this.tasks.addTask(7, new EntityAIAttackMelee(this, 1.0D, false));
-			this.targetTasks.addTask(8, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
-			this.targetTasks.addTask(9, new EntityAIHurtByTarget(this, false));
-			this.targetTasks.addTask(8, new EntityAINearestAttackableTarget(this, EntityPlayerMP.class, true));
-			this.targetTasks.addTask(9, new EntityAIHurtByTarget(this, false));
 
 		}
 
 		protected void applyEntityAttributes() {
 			super.applyEntityAttributes();
 			this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
-			this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20D);
+			this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(7D);
 			if (this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE) != null)
-				this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3D);
+				this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(2D);
 		}
 
 		protected void addRandomArmor() {
@@ -133,25 +129,25 @@ public class gibdo {
 
 		@Override
 		protected Item getDropItem() {
-			return new ItemStack(Items.EMERALD).getItem();
+			return null;
 		}
 
 		@Override
 		protected net.minecraft.util.SoundEvent getAmbientSound() {
 			return (net.minecraft.util.SoundEvent) net.minecraft.util.SoundEvent.REGISTRY.getObject(new ResourceLocation(
-					"testzeldamobs:entity.gibdo.idle"));
+					"testzeldamobs:entity.stalchild.idle"));
 		}
 
 		@Override
 		protected net.minecraft.util.SoundEvent getHurtSound() {
 			return (net.minecraft.util.SoundEvent) net.minecraft.util.SoundEvent.REGISTRY.getObject(new ResourceLocation(
-					"testzeldamobs:entity.gibdo.hurt"));
+					"testzeldamobs:entity.stalchild.hurt"));
 		}
 
 		@Override
 		protected net.minecraft.util.SoundEvent getDeathSound() {
 			return (net.minecraft.util.SoundEvent) net.minecraft.util.SoundEvent.REGISTRY.getObject(new ResourceLocation(
-					"testzeldamobs:entity.gibdo.death"));
+					"testzeldamobs:entity.stalchild.death"));
 		}
 
 		@Override
@@ -202,81 +198,97 @@ public class gibdo {
 
 	}
 
-	// Date: 11-04-17 18:39:51
+	// Date: 12-04-17 18:39:56
 	// Template version 1.1
 	// Java generated by Techne
 	// Keep in mind that you still need to fill in some blanks
 	// - ZeuX
 
-	public static class Modelgibdo extends ModelBase {
+	public static class ModelStalchildOoT extends ModelBase {
 		// fields
-		ModelRenderer mask;
+		ModelRenderer head;
 		ModelRenderer body;
 		ModelRenderer rightarm;
 		ModelRenderer leftarm;
 		ModelRenderer rightleg;
 		ModelRenderer leftleg;
-		ModelRenderer head;
+		ModelRenderer mouth;
+		ModelRenderer epauledroit;
+		ModelRenderer epaulegauche;
 
-		public Modelgibdo() {
+		public ModelStalchildOoT() {
 			textureWidth = 64;
 			textureHeight = 64;
 
-			mask = new ModelRenderer(this, 0, 0);
-			mask.addBox(-4F, -8F, -4F, 8, 8, 1);
-			mask.setRotationPoint(0F, -2F, 1F);
-			mask.setTextureSize(64, 64);
-			mask.mirror = true;
-			setRotation(mask, 0F, 0F, 0F);
+			head = new ModelRenderer(this, 0, 0);
+			head.addBox(-4F, -8F, -4F, 8, 8, 8);
+			head.setRotationPoint(0F, 0F, 0F);
+			head.setTextureSize(64, 64);
+			head.mirror = true;
+			setRotation(head, 0F, 0F, 0F);
 			body = new ModelRenderer(this, 16, 16);
 			body.addBox(-4F, 0F, -2F, 8, 12, 4);
-			body.setRotationPoint(0F, -2F, 0F);
+			body.setRotationPoint(0F, 0F, 0F);
 			body.setTextureSize(64, 64);
 			body.mirror = true;
-			setRotation(body, 0.1047198F, 0F, 0F);
+			setRotation(body, 0F, 0F, 0F);
 			rightarm = new ModelRenderer(this, 40, 16);
-			rightarm.addBox(-3F, -2F, -2F, 3, 13, 4);
-			rightarm.setRotationPoint(-4F, 0F, 0F);
+			rightarm.addBox(-3F, -2F, -2F, 3, 12, 2);
+			rightarm.setRotationPoint(-7F, 2F, 1F);
 			rightarm.setTextureSize(64, 64);
 			rightarm.mirror = true;
 			setRotation(rightarm, 0F, 0F, 0F);
 			leftarm = new ModelRenderer(this, 40, 16);
-			leftarm.addBox(-1F, -2F, -2F, 3, 13, 4);
-			leftarm.setRotationPoint(5F, 0F, 0F);
+			leftarm.addBox(-1F, -2F, -2F, 3, 12, 2);
+			leftarm.setRotationPoint(8F, 2F, 1F);
 			leftarm.setTextureSize(64, 64);
 			leftarm.mirror = true;
 			setRotation(leftarm, 0F, 0F, 0F);
 			rightleg = new ModelRenderer(this, 0, 16);
-			rightleg.addBox(-2F, 0F, -2F, 3, 14, 4);
-			rightleg.setRotationPoint(-2F, 10F, 1F);
+			rightleg.addBox(-2F, 0F, -2F, 3, 12, 2);
+			rightleg.setRotationPoint(-2F, 12F, 1F);
 			rightleg.setTextureSize(64, 64);
 			rightleg.mirror = true;
 			setRotation(rightleg, 0F, 0F, 0F);
 			leftleg = new ModelRenderer(this, 0, 16);
-			leftleg.addBox(-2F, 0F, -2F, 3, 14, 4);
-			leftleg.setRotationPoint(3F, 10F, 1F);
+			leftleg.addBox(-2F, 0F, -2F, 3, 12, 2);
+			leftleg.setRotationPoint(3F, 12F, 1F);
 			leftleg.setTextureSize(64, 64);
 			leftleg.mirror = true;
 			setRotation(leftleg, 0F, 0F, 0F);
-			head = new ModelRenderer(this, 0, 0);
-			head.addBox(0F, 0F, 0F, 6, 7, 3);
-			head.setRotationPoint(-3F, -9F, -2F);
-			head.setTextureSize(64, 64);
-			head.mirror = true;
-			setRotation(head, 0F, 0F, 0F);
+			mouth = new ModelRenderer(this, 0, 0);
+			mouth.addBox(0F, 0F, 0F, 6, 3, 2);
+			mouth.setRotationPoint(-3F, -3F, -6F);
+			mouth.setTextureSize(64, 64);
+			mouth.mirror = true;
+			setRotation(mouth, 0F, 0F, 0F);
+			epauledroit = new ModelRenderer(this, 40, 16);
+			epauledroit.addBox(0F, 0F, 0F, 2, 3, 2);
+			epauledroit.setRotationPoint(-7F, 2F, -1F);
+			epauledroit.setTextureSize(64, 64);
+			epauledroit.mirror = true;
+			setRotation(epauledroit, 0F, 0F, -1.58825F);
+			epaulegauche = new ModelRenderer(this, 40, 16);
+			epaulegauche.addBox(0F, 0F, 0F, 2, 3, 2);
+			epaulegauche.setRotationPoint(4F, 2F, -1F);
+			epaulegauche.setTextureSize(64, 64);
+			epaulegauche.mirror = true;
+			setRotation(epaulegauche, 0F, 0F, -1.58825F);
 		}
 
 		public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
 			super.render(entity, f, f1, f2, f3, f4, f5);
 			setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 
-			mask.render(f5);
+			head.render(f5);
 			body.render(f5);
 			rightarm.render(f5);
 			leftarm.render(f5);
 			rightleg.render(f5);
 			leftleg.render(f5);
-			head.render(f5);
+			mouth.render(f5);
+			epauledroit.render(f5);
+			epaulegauche.render(f5);
 		}
 
 		private void setRotation(ModelRenderer model, float x, float y, float z) {

@@ -1,5 +1,5 @@
-package com.ganondorf629.zeldamobs;
+package mod.ganondorf629;
 
-public class VarListzeldamobs {
-	
+public class VarListtestzeldamobs {
+
 }

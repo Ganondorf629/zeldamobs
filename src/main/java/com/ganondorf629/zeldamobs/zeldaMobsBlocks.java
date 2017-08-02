@@ -1,4 +1,4 @@
-package com.ganondorf629.zeldamobs;
+package mod.ganondorf629;
 
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.fml.relauncher.Side;

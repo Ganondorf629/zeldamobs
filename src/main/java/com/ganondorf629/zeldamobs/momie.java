@@ -16,16 +16,13 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.DamageSource;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Item;
-import net.minecraft.init.Items;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.entity.effect.EntityLightningBolt;
-import net.minecraft.entity.boss.EntityDragon;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.EntityAIWander;
 import net.minecraft.entity.ai.EntityAISwimming;
-import net.minecraft.entity.ai.EntityAIOpenDoor;
+import net.minecraft.entity.ai.EntityAIRestrictSun;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
@@ -43,7 +40,7 @@ import java.util.Iterator;
 import java.util.ArrayList;
 
 @SuppressWarnings("unchecked")
-public class gibdo {
+public class momie {
 
 	public int mobid = 0;
 	public static Object instance;
@@ -63,12 +60,12 @@ public class gibdo {
 
 	@SideOnly(Side.CLIENT)
 	public void registerRenderers() {
-		RenderLiving customRender = new RenderLiving(Minecraft.getMinecraft().getRenderManager(), new gibdo.Modelgibdo(), 0) {
+		RenderLiving customRender = new RenderLiving(Minecraft.getMinecraft().getRenderManager(), new momie.Modelgibdo(), 0) {
 			protected ResourceLocation getEntityTexture(Entity par1Entity) {
-				return new ResourceLocation("gibdo.png");
+				return new ResourceLocation("momie.png");
 			}
 		};
-		RenderingRegistry.registerEntityRenderingHandler(gibdo.Entitygibdo.class, customRender);
+		RenderingRegistry.registerEntityRenderingHandler(momie.Entitymomie.class, customRender);
 
 	}
 
@@ -78,9 +75,9 @@ public class gibdo {
 	public void preInit(FMLPreInitializationEvent event) {
 		int entityID = MathHelper.getRandomUUID().hashCode();
 		mobid = entityID;
-		EntityRegistry.registerModEntity(new ResourceLocation("testzeldamobs:gibdo"), gibdo.Entitygibdo.class, "gibdo", entityID,
-				instance, 64, 1, true, (204 << 16) + (153 << 8) + 0, (51 << 16) + (102 << 8) + 0);
-		EntityRegistry.addSpawn(gibdo.Entitygibdo.class, 10, 1, 1, EnumCreatureType.MONSTER, clean(Biome.REGISTRY));
+		EntityRegistry.registerModEntity(new ResourceLocation("testzeldamobs:momie"), momie.Entitymomie.class, "momie", entityID,
+				instance, 64, 1, true, (153 << 16) + (153 << 8) + 153, (102 << 16) + (102 << 8) + 102);
+		EntityRegistry.addSpawn(momie.Entitymomie.class, 60, 1, 5, EnumCreatureType.MONSTER, clean(Biome.REGISTRY));
 
 	}
 
@@ -93,38 +90,37 @@ public class gibdo {
 		return ls.toArray(new Biome[ls.size()]);
 	}
 
-	public static class Entitygibdo extends EntityMob {
+	public static class Entitymomie extends EntityMob {
 		World world = null;
 
-		public Entitygibdo(World var1) {
+		public Entitymomie(World var1) {
 			super(var1);
 			world = var1;
 			experienceValue = 5;
 			this.isImmuneToFire = false;
 			addRandomArmor();
 			setNoAI(!true);
-
+			this.tasks.addTask(0, new EntityAISwimming(this));
+			this.tasks.addTask(6, new EntityAIWander(this, 1.0D));
+			this.tasks.addTask(8, new EntityAILookIdle(this));
 			this.tasks.addTask(1, new EntityAIWander(this, 0.8D));
 			this.tasks.addTask(2, new EntityAILookIdle(this));
-			this.tasks.addTask(3, new EntityAIOpenDoor(this, true));
-			this.tasks.addTask(3, new EntityAIOpenDoor(this, false));
-
-			this.tasks.addTask(5, new EntityAISwimming(this));
-			this.tasks.addTask(6, new EntityAIWatchClosest(this, EntityDragon.class, 6.0F));
+			this.tasks.addTask(3, new EntityAISwimming(this));
+			this.targetTasks.addTask(4, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
+			this.targetTasks.addTask(5, new EntityAIHurtByTarget(this, false));
+			this.targetTasks.addTask(5, new EntityAINearestAttackableTarget(this, EntityPlayerMP.class, true));
+			this.targetTasks.addTask(6, new EntityAIHurtByTarget(this, false));
+			this.tasks.addTask(6, new EntityAIRestrictSun(this));
 			this.tasks.addTask(7, new EntityAIAttackMelee(this, 1.0D, false));
-			this.targetTasks.addTask(8, new EntityAINearestAttackableTarget(this, EntityPlayer.class, true));
-			this.targetTasks.addTask(9, new EntityAIHurtByTarget(this, false));
-			this.targetTasks.addTask(8, new EntityAINearestAttackableTarget(this, EntityPlayerMP.class, true));
-			this.targetTasks.addTask(9, new EntityAIHurtByTarget(this, false));
 
 		}
 
 		protected void applyEntityAttributes() {
 			super.applyEntityAttributes();
 			this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
-			this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20D);
+			this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(10D);
 			if (this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE) != null)
-				this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3D);
+				this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(10D);
 		}
 
 		protected void addRandomArmor() {
@@ -133,7 +129,7 @@ public class gibdo {
 
 		@Override
 		protected Item getDropItem() {
-			return new ItemStack(Items.EMERALD).getItem();
+			return null;
 		}
 
 		@Override
@@ -202,7 +198,7 @@ public class gibdo {
 
 	}
 
-	// Date: 11-04-17 18:39:51
+	// Date: 11-04-17 18:38:39
 	// Template version 1.1
 	// Java generated by Techne
 	// Keep in mind that you still need to fill in some blanks
@@ -210,7 +206,6 @@ public class gibdo {
 
 	public static class Modelgibdo extends ModelBase {
 		// fields
-		ModelRenderer mask;
 		ModelRenderer body;
 		ModelRenderer rightarm;
 		ModelRenderer leftarm;
@@ -222,38 +217,32 @@ public class gibdo {
 			textureWidth = 64;
 			textureHeight = 64;
 
-			mask = new ModelRenderer(this, 0, 0);
-			mask.addBox(-4F, -8F, -4F, 8, 8, 1);
-			mask.setRotationPoint(0F, -2F, 1F);
-			mask.setTextureSize(64, 64);
-			mask.mirror = true;
-			setRotation(mask, 0F, 0F, 0F);
 			body = new ModelRenderer(this, 16, 16);
-			body.addBox(-4F, 0F, -2F, 8, 12, 4);
+			body.addBox(-4F, 0F, -2F, 8, 12, 3);
 			body.setRotationPoint(0F, -2F, 0F);
 			body.setTextureSize(64, 64);
 			body.mirror = true;
 			setRotation(body, 0.1047198F, 0F, 0F);
 			rightarm = new ModelRenderer(this, 40, 16);
-			rightarm.addBox(-3F, -2F, -2F, 3, 13, 4);
+			rightarm.addBox(-3F, -2F, -2F, 3, 13, 3);
 			rightarm.setRotationPoint(-4F, 0F, 0F);
 			rightarm.setTextureSize(64, 64);
 			rightarm.mirror = true;
 			setRotation(rightarm, 0F, 0F, 0F);
 			leftarm = new ModelRenderer(this, 40, 16);
-			leftarm.addBox(-1F, -2F, -2F, 3, 13, 4);
+			leftarm.addBox(-1F, -2F, -2F, 3, 13, 3);
 			leftarm.setRotationPoint(5F, 0F, 0F);
 			leftarm.setTextureSize(64, 64);
 			leftarm.mirror = true;
 			setRotation(leftarm, 0F, 0F, 0F);
 			rightleg = new ModelRenderer(this, 0, 16);
-			rightleg.addBox(-2F, 0F, -2F, 3, 14, 4);
+			rightleg.addBox(-2F, 0F, -2F, 3, 14, 3);
 			rightleg.setRotationPoint(-2F, 10F, 1F);
 			rightleg.setTextureSize(64, 64);
 			rightleg.mirror = true;
 			setRotation(rightleg, 0F, 0F, 0F);
 			leftleg = new ModelRenderer(this, 0, 16);
-			leftleg.addBox(-2F, 0F, -2F, 3, 14, 4);
+			leftleg.addBox(-2F, 0F, -2F, 3, 14, 3);
 			leftleg.setRotationPoint(3F, 10F, 1F);
 			leftleg.setTextureSize(64, 64);
 			leftleg.mirror = true;
@@ -270,7 +259,6 @@ public class gibdo {
 			super.render(entity, f, f1, f2, f3, f4, f5);
 			setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 
-			mask.render(f5);
 			body.render(f5);
 			rightarm.render(f5);
 			leftarm.render(f5);

@@ -1,4 +1,4 @@
-package com.ganondorf629.zeldamobs;
+package mod.ganondorf629;
 
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.fml.relauncher.Side;
@@ -58,7 +58,7 @@ public class stalchildStatue {
 	public void load(FMLInitializationEvent event) {
 		if (event.getSide() == Side.CLIENT) {
 			Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
-					.register(Item.getItemFromBlock(block), 0, new ModelResourceLocation("ZeldaMobs:stalchildstatue", "inventory"));
+					.register(Item.getItemFromBlock(block), 0, new ModelResourceLocation("testzeldamobs:stalchildstatue", "inventory"));
 		}
 	}
 
@@ -116,7 +116,7 @@ public class stalchildStatue {
 			if (true) {
 				world.playSound((EntityPlayer) null, (double) i + 0.5D, (double) j + 0.5D, (double) k + 0.5D,
 						(net.minecraft.util.SoundEvent) net.minecraft.util.SoundEvent.REGISTRY.getObject(new ResourceLocation(
-								("ZeldaMobs:entity.stalchild.death"))), SoundCategory.NEUTRAL, 1.0F, 1.0F);
+								("Testzeldamobs:entity.stalchild.death"))), SoundCategory.NEUTRAL, 1.0F, 1.0F);
 			}
 
 		}
@@ -130,7 +130,7 @@ public class stalchildStatue {
 			if (true) {
 				world.playSound((EntityPlayer) null, (double) i + 0.5D, (double) j + 0.5D, (double) k + 0.5D,
 						(net.minecraft.util.SoundEvent) net.minecraft.util.SoundEvent.REGISTRY.getObject(new ResourceLocation(
-								("ZeldaMobs:entity.stalchild.death"))), SoundCategory.NEUTRAL, 1.0F, 1.0F);
+								("Testzeldamobs:entity.stalchild.death"))), SoundCategory.NEUTRAL, 1.0F, 1.0F);
 			}
 
 		}
@@ -143,7 +143,7 @@ public class stalchildStatue {
 			if (true) {
 				world.playSound((EntityPlayer) null, (double) i + 0.5D, (double) j + 0.5D, (double) k + 0.5D,
 						(net.minecraft.util.SoundEvent) net.minecraft.util.SoundEvent.REGISTRY.getObject(new ResourceLocation(
-								("ZeldaMobs:entity.stalchild.hurt"))), SoundCategory.NEUTRAL, 1.0F, 1.0F);
+								("Testzeldamobs:entity.stalchild.hurt"))), SoundCategory.NEUTRAL, 1.0F, 1.0F);
 			}
 
 		}
@@ -157,7 +157,7 @@ public class stalchildStatue {
 			if (true) {
 				world.playSound((EntityPlayer) null, (double) i + 0.5D, (double) j + 0.5D, (double) k + 0.5D,
 						(net.minecraft.util.SoundEvent) net.minecraft.util.SoundEvent.REGISTRY.getObject(new ResourceLocation(
-								("ZeldaMobs:entity.stalchild.idle"))), SoundCategory.NEUTRAL, 1.0F, 1.0F);
+								("Testzeldamobs:entity.stalchild.idle"))), SoundCategory.NEUTRAL, 1.0F, 1.0F);
 			}
 
 			return true;

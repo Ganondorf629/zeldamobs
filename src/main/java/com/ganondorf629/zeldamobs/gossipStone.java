@@ -1,4 +1,4 @@
-package com.ganondorf629.zeldamobs;
+package mod.ganondorf629;
 
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.fml.relauncher.Side;
@@ -55,7 +55,7 @@ public class gossipStone {
 	public void load(FMLInitializationEvent event) {
 		if (event.getSide() == Side.CLIENT) {
 			Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
-					.register(Item.getItemFromBlock(block), 0, new ModelResourceLocation("ZeldaMobs:gossipstone", "inventory"));
+					.register(Item.getItemFromBlock(block), 0, new ModelResourceLocation("testzeldamobs:gossipstone", "inventory"));
 		}
 	}
 

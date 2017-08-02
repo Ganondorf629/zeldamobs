@@ -1,4 +1,4 @@
-package com.ganondorf629.zeldamobs;
+package mod.ganondorf629;
 
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.fml.relauncher.Side;
@@ -53,7 +53,7 @@ public class molgeraStatue {
 	public void load(FMLInitializationEvent event) {
 		if (event.getSide() == Side.CLIENT) {
 			Minecraft.getMinecraft().getRenderItem().getItemModelMesher()
-					.register(Item.getItemFromBlock(block), 0, new ModelResourceLocation("ZeldaMobs:molgerastatue", "inventory"));
+					.register(Item.getItemFromBlock(block), 0, new ModelResourceLocation("testzeldamobs:molgerastatue", "inventory"));
 		}
 	}
 

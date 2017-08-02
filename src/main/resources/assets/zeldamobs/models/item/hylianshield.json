@@ -1,0 +1,6 @@
+{
+    "parent": "zeldamobs:item/hylianshield_custom",
+    "textures": {
+        "SIDE": "blocks/sides","FRONT": "items/dafdafd","BACK": "blocks/1"
+    }
+}

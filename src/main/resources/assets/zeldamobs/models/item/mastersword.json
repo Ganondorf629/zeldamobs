@@ -1,0 +1,6 @@
+{
+    "parent": "zeldamobs:item/mastersword_custom",
+    "textures": {
+        "gold": "MASTERSWORDTEXTURES/gold","texture": "MASTERSWORDTEXTURES/blade","hilt": "MASTERSWORDTEXTURES/hilt","handle": "MASTERSWORDTEXTURES/handle","crossguard": "MASTERSWORDTEXTURES/crossguard"
+    }
+}
